@@ -1,0 +1,46 @@
+function dijkstra(startKey, endKey):
+
+    // Initialize a map to store the shortest distance from the start vertex to each vertex
+    Initialize distances as an empty map with default value infinity
+    // Initialize a map to store the previous vertex in the shortest path
+    Initialize previous as an empty map
+    // Initialize a priority queue to store vertices and their distances
+    Initialize priorityQueue as a priority queue sorted by vertex distance
+
+    Set startVertex to the vertex corresponding to startKey
+    distances[startVertex] = 0
+    priorityQueue.add((startVertex, 0))
+
+    While priorityQueue is not empty do:
+        // Remove the vertex with the smallest distance from the priority queue
+        (current, currentDistance) = priorityQueue.poll()
+
+        // If the current vertex is the end vertex, construct the shortest path
+        If current.getKey() == endKey:
+            // Initialize path as an empty list
+            Initialize path as an empty list
+            // Trace the path back from the end vertex to the start vertex
+            For vertex from current to startVertex using previous do:
+                Add vertex to path
+
+            Reverse the path to get the correct order from start to end
+            Return path // Return the shortest path
+
+
+        For each neighborEntry in current neighbors do:
+            (neighbor, weight) = neighborEntry
+            // Calculate the new distance to the neighbor
+            newDist = currentDistance + weight
+
+            // If the new distance is shorter than the known distance to the neighbor
+            // or infinity if the neighbor has no distance
+            If newDist < distances[neighbor] do:
+                // Update the distance to the neighbor
+                distances[neighbor] = newDist
+                // Update the previous vertex for the neighbor
+                previous[neighbor] = current
+                // Add the neighbor to the priority queue with the new distance
+                priorityQueue.add((neighbor, newDist))
+
+    // If no path was found, return an empty list
+    Return an empty list

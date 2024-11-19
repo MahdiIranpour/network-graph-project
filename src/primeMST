@@ -1,0 +1,36 @@
+function primMST():
+
+    Initialize mst as an empty set of edges
+    Initialize priorityQueue as a priority queue sorted by edge weight
+    Set startVertex to an arbitrary vertex from the graph
+    Initialize visited as an empty set of vertices
+
+    Add startVertex to visited
+
+    // Add all edges from the starting vertex to its neighbors into the priority queue
+    For each vertex of startVertex neighbors do:
+        Add the edge from startVertex to the neighbor to priorityQueue
+
+    // Process edges in the priority queue until it is empty
+    While priorityQueue is not empty do:
+
+    // Remove the edge with the smallest weight from the priority queue
+        Remove the edge with the smallest weight from priorityQueue
+
+        // If the destination vertex of the edge is already visited, skip this edge
+        If the destination vertex of the edge is already visited:
+            Continue to the next iteration
+
+        // If the destination vertex is not visited Add the edge to the MST
+        Add the edge to mst
+
+        Set newVertex to the destination vertex of the edge
+        Add newVertex to visited
+
+        // Add all edges from the new vertex to its unvisited neighbors into the priority queue
+        For each vertex of newVertex neighbors do:
+            If the neighbor is not in visited:
+                Add the edge from newVertex to the neighbor to priorityQueue
+
+    // Return the set of edges that form the MST
+    Return mst
